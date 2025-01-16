@@ -1,3 +1,11 @@
-<app-user-detail></app-user-detail>
-<app-account-balance></app-account-balance>
-<app-account-movements></app-account-movements>
+<mat-toolbar color="primary">
+  <span>Sistema Bancario</span>
+</mat-toolbar>
+<mat-tab-group (selectedTabChange)="onTabChange($event)">
+  <mat-tab label="Usuario"></mat-tab>
+  <mat-tab label="Saldos"></mat-tab>
+  <mat-tab label="Movimientos"></mat-tab>
+</mat-tab-group>
+<div style="padding: 16px">
+  <router-outlet></router-outlet>
+</div>

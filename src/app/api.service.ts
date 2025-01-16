@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, map, of } from 'rxjs';
+import { Observable, catchError, of } from 'rxjs';
 import { MOCK_ACCOUNTS, MOCK_MOVEMENTS, MOCK_USER } from './mock-response.const';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  private baseUrl = 'http://my-domain-banking';
+  private readonly baseUrl = 'http://my-domain-banking';
 
-  constructor(private http: HttpClient) { }
+  constructor(private readonly http: HttpClient) { }
 
   getUserDetails(): Observable<any> {
     return this.http.get(`${this.baseUrl}/user`)

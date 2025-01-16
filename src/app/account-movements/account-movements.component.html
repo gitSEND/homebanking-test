@@ -1,6 +1,24 @@
 <h2>Movimientos de la Cuenta</h2>
-<ul>
-    <li *ngFor="let movement of movements">
-        {{ movement.date }}: {{ movement.amount | currency }} - {{ movement.description }}
-    </li>
-</ul>
+<table mat-table [dataSource]="movements" class="mat-elevation-z8">
+
+  <!-- Fecha -->
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef> Fecha </th>
+    <td mat-cell *matCellDef="let movement"> {{ movement.date }} </td>
+  </ng-container>
+
+  <!-- Monto -->
+  <ng-container matColumnDef="amount">
+    <th mat-header-cell *matHeaderCellDef> Monto </th>
+    <td mat-cell *matCellDef="let movement"> {{ movement.amount | currency }} </td>
+  </ng-container>
+
+  <!-- Descripción -->
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef> Descripción </th>
+    <td mat-cell *matCellDef="let movement"> {{ movement.description }} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

@@ -1,15 +1,27 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { AccountBalanceComponent } from './account-balance/account-balance.component';
-import { AccountMovementsComponent } from './account-movements/account-movements.component';
-import { UserDetailComponent } from './user-detail/user-detail.component';
+import { CommonModule } from '@angular/common';
+import { Router, RouterOutlet } from '@angular/router';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, AccountBalanceComponent, AccountMovementsComponent, UserDetailComponent],
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    MatToolbarModule,
+    MatTabsModule
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'myapp';
+  constructor(private readonly router: Router) { }
+
+  // Método para cambiar de ruta cuando se selecciona un tab
+  onTabChange(event: any): void {
+    const routes = ['/user-detail', '/account-balance', '/account-movements'];
+    this.router.navigate([routes[event.index]]);
+  }
 }
